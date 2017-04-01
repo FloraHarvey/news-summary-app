@@ -36,5 +36,17 @@ function listControllerAddsArticleToList () {
   }
 }
 
+function listControllerCreatesView () {
+  var listDouble = new ListDouble();
+  var controller = new ListController(listDouble);
+  try {
+    new Assert(controller.view, "View not created", "listControllerCreatesView").isTypeOf(ListView);
+  }
+  catch(err) {
+    console.log(err.message);
+  }
+}
+
 listControllerCanBeInstantiated();
 listControllerAddsArticleToList();
+listControllerCreatesView();

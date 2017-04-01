@@ -7,9 +7,9 @@
     this.view = new ListView(list);
   }
 
-ListController.prototype.addArticle = function (headline, content) {
-  this.list.addArticle(headline, content);
-};
+  ListController.prototype.addArticle = function (headline, content) {
+    this.list.addArticle(headline, content);
+  };
 
   exports.ListController = ListController;
 
