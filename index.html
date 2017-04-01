@@ -6,31 +6,15 @@
   </head>
   <body>
 
-    <div id = article>Hello</div>
-
-    <script type="text/javascript">
-        function loadArticle() {
-            var xmlhttp = new XMLHttpRequest();
-
-            xmlhttp.onreadystatechange = function() {
-                if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
-                   if (xmlhttp.status == 200) {
-                      var data = xmlhttp.responseText
-                      var jsonResponse = JSON.parse(data);
-                      var response = (jsonResponse["response"]);
-                       document.getElementById("article").innerHTML = response.content.fields.headline;
-
-                   }
-                }
-            };
-
-            xmlhttp.open("GET", "http://news-summary-api.herokuapp.com/guardian?apiRequestUrl=http://content.guardianapis.com/society/2017/apr/01/saturday-jobs-brexit-labour-shortage-young-people?show-fields=headline", true);
-            xmlhttp.send();
+    <div id = headlines>Hello</div>
 
 
-        }
-        loadArticle()
-    </script>
+    <script src="./models/article.js"></script>
+    <script src="./models/list.js"></script>
+    <script src="listView.js"></script>
+    <script src="listController.js"></script>
+    <script src="index.js"></script>
+    <script src="api.js"></script>
 
   </body>
 </html>

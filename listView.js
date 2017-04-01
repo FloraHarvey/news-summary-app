@@ -7,9 +7,10 @@
   }
 
   ListView.prototype.generateHeadlineHtml = function () {
-    return this.list.viewArticles().map(function(article) {
-      return "<ul><li>" + article.headline + "</li></ul>";
-    }).join();
+    return "<ul>" + this.list.viewArticles().map(function(article) {
+      return "<li><a href='#articles/" + article.id + "'>" + article.headline + " - " + article.author +
+      " - " + article.date + "</a></li>";
+    }).join("") + "</ul>";
   };
 
 

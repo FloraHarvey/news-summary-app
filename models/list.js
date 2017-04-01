@@ -5,8 +5,9 @@
     this._articles = [];
   }
 
-List.prototype.addArticle = function (headline, content) {
-  this._articles.push(new Article(headline, content));
+List.prototype.addArticle = function (headline, content, author, date) {
+  var id = this._articles.length;
+  this._articles.push(new Article(id, headline, content, author, date));
 };
 
 List.prototype.viewArticles = function () {

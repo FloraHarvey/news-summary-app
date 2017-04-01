@@ -11,6 +11,17 @@ function listCanAddArticle () {
   }
 }
 
+function listAssignsArticleIdAsSerial () {
+  var list = new List();
+  list.addArticle("News", "Warmest day of the year...");
+  try {
+    new Assert(list._articles[0].id === 0, "List did not assign correct ID", "listAssignsArticleIdAsSerial").isTrue();
+  }
+  catch(err) {
+    console.log(err.message);
+  }
+}
+
 function listCanShowArticles () {
   var list = new List();
   list.addArticle("News", "Warmest day of the year...");
@@ -25,3 +36,4 @@ function listCanShowArticles () {
 
 listCanAddArticle();
 listCanShowArticles();
+listAssignsArticleIdAsSerial();
