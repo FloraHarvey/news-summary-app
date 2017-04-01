@@ -10,5 +10,16 @@ function articleHasHeadline () {
   }
 }
 
+function articleHasContent () {
+  var article = new Article("News", "Warmest day of the year...");
+  try {
+    new Assert(article.hasOwnProperty("content"), "Content is not a valid property", "articleHasContent").isTrue();
+  }
+  catch(err) {
+    console.log(err.message);
+  }
+}
+
 
 articleHasHeadline ();
+articleHasContent();
