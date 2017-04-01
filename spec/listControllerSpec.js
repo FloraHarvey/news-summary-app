@@ -5,7 +5,7 @@ function ListDouble() {
 }
 
 ListDouble.prototype = {
-  createNote: function() {
+  addArticle: function() {
     this.addArticleCallCount++;
   },
   viewArticles: function() {
@@ -24,4 +24,17 @@ function listControllerCanBeInstantiated () {
   }
 }
 
+function listControllerAddsArticleToList () {
+  var listDouble = new ListDouble();
+  var controller = new ListController(listDouble);
+  controller.addArticle("News", "Warmest day of the year...");
+  try {
+    new Assert(listDouble.addArticleCallCount, "Article not added to list", "listControllerAddsArticleToList", 1).isEqual();
+  }
+  catch(err) {
+    console.log(err.message);
+  }
+}
+
 listControllerCanBeInstantiated();
+listControllerAddsArticleToList();
