@@ -13,6 +13,17 @@ ListDouble.prototype = {
   }
 };
 
+function ElementDouble() {
+  this.innerHTML = "";
+}
+
+function ViewDouble() {}
+ViewDouble.prototype = {
+  generateHeadlineHtml: function() {
+    return "Headlines";
+  }
+};
+
 function listControllerCanBeInstantiated () {
   var listDouble = new ListDouble();
   var controller = new ListController(listDouble);
@@ -47,6 +58,22 @@ function listControllerCreatesView () {
   }
 }
 
+function listControllerInsertsHtmlOnPage () {
+  var listDouble = new ListDouble();
+  var controller = new ListController(listDouble);
+  controller.view = new ViewDouble(ListDouble);
+  var element = new ElementDouble();
+  controller.insertListHTML(element);
+
+  try {
+    new Assert(element.innerHTML, "HTML not added to page", "listControllerInsertsHtmlOnPage", "Headlines").isEqual();
+  }
+  catch(err) {
+    console.log(err.message);
+  }
+}
+
 listControllerCanBeInstantiated();
 listControllerAddsArticleToList();
 listControllerCreatesView();
+listControllerInsertsHtmlOnPage();

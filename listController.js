@@ -11,6 +11,10 @@
     this.list.addArticle(headline, content);
   };
 
+  ListController.prototype.insertListHTML = function (element) {
+    element.innerHTML = this.view.generateHeadlineHtml();
+  };
+
   exports.ListController = ListController;
 
 })(this);
