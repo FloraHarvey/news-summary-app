@@ -15,19 +15,19 @@
             xmlhttp.onreadystatechange = function() {
                 if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
                    if (xmlhttp.status == 200) {
-                       document.getElementById("article").innerHTML = xmlhttp.responseText;
-                   }
-                   else if (xmlhttp.status == 400) {
-                      alert('There was an error 400');
-                   }
-                   else {
-                       alert('something else other than 200 was returned');
+                      var data = xmlhttp.responseText
+                      var jsonResponse = JSON.parse(data);
+                      var response = (jsonResponse["response"]);
+                       document.getElementById("article").innerHTML = response.content.fields.headline;
+
                    }
                 }
             };
 
-            xmlhttp.open("GET", "http://news-summary-api.herokuapp.com/guardian?apiRequestUrl=http://content.guardianapis.com/society/2017/apr/01/saturday-jobs-brexit-labour-shortage-young-people?show-fields=body", true);
+            xmlhttp.open("GET", "http://news-summary-api.herokuapp.com/guardian?apiRequestUrl=http://content.guardianapis.com/society/2017/apr/01/saturday-jobs-brexit-labour-shortage-young-people?show-fields=headline", true);
             xmlhttp.send();
+
+
         }
         loadArticle()
     </script>
