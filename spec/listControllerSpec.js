@@ -2,6 +2,8 @@
 
 function ListDouble() {
   this.addArticleCallCount = 0;
+  this.findArticleByIDCallCount = 0;
+  this.articles = [];
 }
 
 ListDouble.prototype = {
@@ -10,6 +12,9 @@ ListDouble.prototype = {
   },
   viewArticles: function() {
     return ["News"];
+  },
+  findArticleByID: function() {
+    this.findArticleByIDCallCount++;
   }
 };
 
@@ -25,7 +30,7 @@ ViewDouble.prototype = {
 };
 
 function ArticleDouble() {
-  this.id = 1;
+  this.id = 0;
   this.headline = "Today's Weather";
   this.content = "Weather is sunny today";
   this.author = "John Doe";
@@ -110,9 +115,24 @@ function listControllerLoadsCorrectIdFromUrl() {
   }
 }
 
+function listControllerGetsArticleById() {
+  var listDouble = new ListDouble();
+  var controller = new ListController(listDouble);
+  var article = new ArticleDouble();
+  listDouble.articles.push(article);
+  controller.getArticleByID(0);
+  try {
+    new Assert(listDouble.findArticleByIDCallCount === 1 , "Article not found", "listControllerFindsArticleById").isTrue();
+  }
+  catch(err) {
+    console.log(err.message);
+  }
+}
+
 listControllerCanBeInstantiated();
 listControllerAddsArticleToList();
 listControllerCreatesView();
 listControllerInsertsHtmlOnPage();
 listControllerInsertsHtmlForArticleContent();
 listControllerLoadsCorrectIdFromUrl();
+listControllerGetsArticleById();

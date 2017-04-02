@@ -33,7 +33,20 @@ function listCanShowArticles () {
   }
 }
 
+function listCanGetArticleById () {
+  var list = new List();
+  list.addArticle("News", "Warmest day of the year...");
+  try {
+    new Assert(list.findArticleByID(0).headline === "News", "List cannot find article", "listCanGetArticleById").isTrue();
+  }
+  catch(err) {
+    console.log(err.message);
+  }
+}
+
+
 
 listCanAddArticle();
 listCanShowArticles();
 listAssignsArticleIdAsSerial();
+listCanGetArticleById();

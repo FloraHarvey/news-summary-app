@@ -43,6 +43,10 @@
     return location.hash.split("/")[1];
   };
 
+  ListController.prototype.getArticleByID = function (id) {
+    this.list.findArticleByID(id);
+  };
+
   exports.ListController = ListController;
 
 })(this);

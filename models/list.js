@@ -14,5 +14,9 @@ List.prototype.viewArticles = function () {
   return this._articles;
 };
 
+List.prototype.findArticleByID = function (id) {
+  return this._articles[id];
+};
+
   exports.List = List;
 })(this);
