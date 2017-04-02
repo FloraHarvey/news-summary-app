@@ -8,7 +8,10 @@ controller.addArticle("MPs' expenses watchdog accidentally posts private data on
   "Information on staff’s names, pay, working patterns and holidays was uploaded in error and stayed up for four hours",
   "Rowena Mason", "Friday 31 March 2017 17.47 BST", "./images/4529.jpg");
 
-// controller.loadArticle();
+controller.getListData()
+
+
+
 
 controller.insertListHTML(element = document.getElementById("headlines"));
 
