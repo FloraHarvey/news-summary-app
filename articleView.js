@@ -5,6 +5,10 @@
     this.article = article;
   }
 
+  ArticleView.prototype.generateHTML = function () {
+    return "<div>" + this.article.content + "</div>";
+  };
+
 exports.ArticleView = ArticleView;
 
 })(this);
