@@ -129,6 +129,27 @@ function listControllerGetsArticleById() {
   }
 }
 
+function listControllerInsertsHTMLBasedOnURL() {
+  var list = new List();
+  var article = new ArticleDouble();
+  list._articles.push(article);
+  var controller = new ListController(list);
+  var element = function() {
+    this.innerHTML = '';
+  };
+  function DummyLocation() {
+    this.hash = "#articles/0";
+  }
+  var dummyLocation = new DummyLocation();
+  controller.showArticleForCurrentURL(dummyLocation, element);
+  try {
+    new Assert( element.innerHTML === "<div>Weather is sunny today</div>" , "Article is not displayed", "listControllerInsertsHTMLBasedOnURL").isTrue();
+  }
+  catch(err) {
+    console.log(err.message);
+  }
+}
+
 listControllerCanBeInstantiated();
 listControllerAddsArticleToList();
 listControllerCreatesView();
@@ -136,3 +157,4 @@ listControllerInsertsHtmlOnPage();
 listControllerInsertsHtmlForArticleContent();
 listControllerLoadsCorrectIdFromUrl();
 listControllerGetsArticleById();
+listControllerInsertsHTMLBasedOnURL();

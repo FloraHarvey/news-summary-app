@@ -44,7 +44,20 @@
   };
 
   ListController.prototype.getArticleByID = function (id) {
-    this.list.findArticleByID(id);
+    return this.list.findArticleByID(id);
+  };
+
+  ListController.prototype.showArticleForCurrentURL = function (location, element) {
+    var id = this.getArticleIdFromUrl(location);
+    var article = this.getArticleByID(id);
+    this.insertArticleHTML(article, element);
+  };
+
+  ListController.prototype.makeURLChangeShowArticleContent = function () {
+    var controller = this;
+    window.addEventListener("hashchange", function(){
+      controller.showArticleForCurrentURL(window.location, document.getElementById("article"));
+    });
   };
 
   exports.ListController = ListController;

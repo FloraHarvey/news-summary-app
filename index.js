@@ -11,3 +11,5 @@ controller.addArticle("MPs' expenses watchdog accidentally posts private data on
 // controller.loadArticle();
 
 controller.insertListHTML(element = document.getElementById("headlines"));
+
+controller.makeURLChangeShowArticleContent();
