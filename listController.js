@@ -15,6 +15,11 @@
     element.innerHTML = this.view.generateHeadlineHtml();
   };
 
+  ListController.prototype.insertArticleHTML = function (article, element) {
+    var view = new ArticleView(article);
+    element.innerHTML = view.generateArticleHTML();
+  };
+
   ListController.prototype.loadArticle = function () {
     var xmlhttp = new XMLHttpRequest();
     var controller = this;

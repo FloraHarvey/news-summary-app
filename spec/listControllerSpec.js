@@ -24,6 +24,14 @@ ViewDouble.prototype = {
   }
 };
 
+function ArticleDouble() {
+  this.id = 1;
+  this.headline = "Today's Weather";
+  this.content = "Weather is sunny today";
+  this.author = "John Doe";
+  this.date = "02/04/2017";
+}
+
 function listControllerCanBeInstantiated () {
   var listDouble = new ListDouble();
   var controller = new ListController(listDouble);
@@ -73,7 +81,22 @@ function listControllerInsertsHtmlOnPage () {
   }
 }
 
+function listControllerInsertsHtmlForArticleContent() {
+  var listDouble = new ListDouble();
+  var controller = new ListController(listDouble);
+  var element = new ElementDouble();
+  var articleDouble = new ArticleDouble();
+  controller.insertArticleHTML(articleDouble, element);
+  try {
+    new Assert(element.innerHTML === "<div>Weather is sunny today</div>" , "Can't display a note", "listControllerInsertsHtmlForArticleContent").isTrue();
+  }
+  catch(err) {
+    console.log(err.message);
+  }
+}
+
 listControllerCanBeInstantiated();
 listControllerAddsArticleToList();
 listControllerCreatesView();
 listControllerInsertsHtmlOnPage();
+listControllerInsertsHtmlForArticleContent();

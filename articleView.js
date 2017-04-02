@@ -5,7 +5,7 @@
     this.article = article;
   }
 
-  ArticleView.prototype.generateHTML = function () {
+  ArticleView.prototype.generateArticleHTML = function () {
     return "<div>" + this.article.content + "</div>";
   };
 

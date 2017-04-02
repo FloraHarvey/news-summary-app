@@ -25,7 +25,7 @@ function articleViewReturnsHtmlForDisplayingArticleContent () {
   var articleDouble = new ArticleDouble();
   var articleView = new ArticleView(articleDouble);
   try {
-    new Assert(articleView.generateHTML(), "Correct HTML not displayed", "articleViewReturnsHtmlForDisplayingArticleContent", "<div>Weather is sunny today</div>").isEqual();
+    new Assert(articleView.generateArticleHTML(), "Correct HTML not displayed", "articleViewReturnsHtmlForDisplayingArticleContent", "<div>Weather is sunny today</div>").isEqual();
   }
   catch(err) {
     console.log(err.message);
