@@ -8,8 +8,10 @@
 
   ListView.prototype.generateHeadlineHtml = function () {
     return "<ul>" + this.list.viewArticles().map(function(article) {
-      return "<li><a href='#articles/" + article.id + "'>" + article.headline + " - " + article.author +
-      " - " + article.date + "</a><img src='" + article.thumbnail + "' style='height:100px;'></li>";
+      return "<li><div class='list-img'><img src='" + article.thumbnail +
+      "'></div><div class='list-text'><a href='#articles/" +
+      article.id + "'>" + article.headline + " - " + article.author +
+      " - " + article.date + "</a></div></li>";
     }).join("") + "</ul>";
   };
 
