@@ -7,8 +7,8 @@
     this.view = new ListView(list);
   }
 
-  ListController.prototype.addArticle = function (headline, content, author, date) {
-    this.list.addArticle(headline, content, author, date);
+  ListController.prototype.addArticle = function (headline, content, author, date, thumbnail) {
+    this.list.addArticle(headline, content, author, date, thumbnail);
   };
 
   ListController.prototype.insertListHTML = function (element) {
@@ -30,7 +30,9 @@
               var data = xmlhttp.responseText;
               var jsonResponse = JSON.parse(data);
               var content = (jsonResponse.response.content.fields);
-              controller.addArticle(content.headline, content.body, content.byline, content.lastModified);
+              controller.addArticle(content.headline, content.body, content.byline, content.lastModified, content.thumbnail);
+              console.log(controller)
+              console.log(content.thumbnail)
               controller.insertListHTML(element = document.getElementById("headlines"));
            }
         }
