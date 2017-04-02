@@ -29,15 +29,11 @@
            if (xmlhttp.status == 200) {
               var data = xmlhttp.responseText;
               var jsonResponse = JSON.parse(data);
-              console.log(jsonResponse.response.results)
-              var list = jsonResponse.response.results
+              var list = jsonResponse.response.results;
               list.forEach(function(result) {
-
-                var url = result.apiUrl.slice(0,4) + result.apiUrl.slice(5)
-                console.log(url)
-                controller.getArticleData(url)
-              })
-
+                var url = result.apiUrl.slice(0,4) + result.apiUrl.slice(5);
+                controller.getArticleData(url);
+              });
            }
         }
     };
@@ -53,17 +49,14 @@
         if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
            if (xmlhttp.status == 200) {
               var data = xmlhttp.responseText;
-              console.log(data)
               var jsonResponse = JSON.parse(data);
-              console.log(jsonResponse)
               var content = (jsonResponse.response.content.fields);
-
               controller.addArticle(content.headline, content.body, content.byline, content.lastModified, content.thumbnail);
               controller.insertListHTML(element = document.getElementById("headlines"));
            }
         }
     };
-    xmlhttp.open("GET", "http://news-summary-api.herokuapp.com/guardian?apiRequestUrl=" + url + "&show-fields=all", true);
+    xmlhttp.open("GET", "http://news-summary-api.herokuapp.com/guardian?apiRequestUrl=" + url + "?show-fields=all", true);
     xmlhttp.send();
   };
 
@@ -88,25 +81,6 @@
       controller.showArticleForCurrentURL(window.location, document.getElementById("article"));
     });
   };
-
-  // ListController.prototype.getArticleFromAPI = function (jsonResponse) {
-  //   var content = (jsonResponse.response.content.fields);
-  //   controller.addArticle(content.headline, content.body, content.byline, content.lastModified, content.thumbnail);
-  //   controller.insertListHTML(element = document.getElementById("headlines"));
-  // };
-  //
-  // ListController.prototype.getResultsFromAPI = function (jsonResponse) {
-  //   var results = jsonResponse.response.results;
-  //   var controller = this;
-  //   results.forEach(function(result) {
-  //     controller.getData(getArticleFromAPI())
-  //   });
-  // };
-  //
-  // ListController.prototype.xmlhttp = function (xmlhttp, url) {
-  //   xmlhttp.open("GET", "http://news-summary-api.herokuapp.com/guardian?apiRequestUrl=" + url, true);
-  //   xmlhttp.send();
-  // };
 
   exports.ListController = ListController;
 
