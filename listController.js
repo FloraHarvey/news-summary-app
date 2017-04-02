@@ -35,11 +35,12 @@
            }
         }
     };
-
     xmlhttp.open("GET", "http://news-summary-api.herokuapp.com/guardian?apiRequestUrl=http://content.guardianapis.com/society/2017/apr/01/saturday-jobs-brexit-labour-shortage-young-people?show-fields=all", true);
     xmlhttp.send();
+  };
 
-
+  ListController.prototype.getArticleIdFromUrl = function (location) {
+    return location.hash.split("/")[1];
   };
 
   exports.ListController = ListController;

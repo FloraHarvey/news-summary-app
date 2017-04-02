@@ -95,8 +95,24 @@ function listControllerInsertsHtmlForArticleContent() {
   }
 }
 
+function listControllerLoadsCorrectIdFromUrl() {
+  var listDouble = new ListDouble();
+  var controller = new ListController(listDouble);
+  function DummyLocation() {
+    this.hash = "#articles/0";
+  }
+  var dummyLocation = new DummyLocation();
+  try {
+    new Assert( controller.getArticleIdFromUrl(dummyLocation) === "0" , "ID not loaded from URL", "listControllerLoadsCorrectIdFromUrl").isTrue();
+  }
+  catch(err) {
+    console.log(err.message);
+  }
+}
+
 listControllerCanBeInstantiated();
 listControllerAddsArticleToList();
 listControllerCreatesView();
 listControllerInsertsHtmlOnPage();
 listControllerInsertsHtmlForArticleContent();
+listControllerLoadsCorrectIdFromUrl();
