@@ -20,47 +20,6 @@
     element.innerHTML = view.generateArticleHTML();
   };
 
-  ListController.prototype.getListData = function () {
-    var xmlhttp = new XMLHttpRequest();
-    var controller = this;
-
-    xmlhttp.onreadystatechange = function() {
-        if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
-           if (xmlhttp.status == 200) {
-              var data = xmlhttp.responseText;
-              var jsonResponse = JSON.parse(data);
-              var list = jsonResponse.response.results;
-              list.forEach(function(result) {
-                var url = result.apiUrl.slice(0,4) + result.apiUrl.slice(5);
-                controller.getArticleData(url);
-              });
-           }
-        }
-    };
-    xmlhttp.open("GET", "http://news-summary-api.herokuapp.com/guardian?apiRequestUrl=http://content.guardianapis.com/search?q=politics", true);
-    xmlhttp.send();
-  };
-
-  ListController.prototype.getArticleData = function (url) {
-    var xmlhttp = new XMLHttpRequest();
-    var controller = this;
-
-    xmlhttp.onreadystatechange = function() {
-        if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
-           if (xmlhttp.status == 200) {
-              var data = xmlhttp.responseText;
-              var jsonResponse = JSON.parse(data);
-              var content = (jsonResponse.response.content.fields);
-              controller.addArticle(content.headline, content.body, content.byline, content.lastModified, content.thumbnail);
-              controller.insertListHTML(element = document.getElementById("headlines"));
-           }
-        }
-    };
-    xmlhttp.open("GET", "http://news-summary-api.herokuapp.com/guardian?apiRequestUrl=" + url + "?show-fields=all", true);
-    xmlhttp.send();
-  };
-
-
   ListController.prototype.getArticleIdFromUrl = function (location) {
     return location.hash.split("/")[1];
   };
@@ -80,6 +39,10 @@
     window.addEventListener("hashchange", function(){
       controller.showArticleForCurrentURL(window.location, document.getElementById("article"));
     });
+  };
+
+  ListController.prototype.makeApiRequest = function (url) {
+    getData(url, saveJSONResponseAsList);
   };
 
   exports.ListController = ListController;
