@@ -57,4 +57,4 @@ To make my news reading more fun
 - I have relied on unit testing for this app, but would like to add feature tests by including the test file into index.html, and using DOM methods such as `<click>` to simulate user actions
 - I would also like to allow the user to select different sections of the newspaper to view the articles in that section, which would require the insertion of the section name into the url that makes the first request for the list of articles
 
-![Screenshot](./images/Screenshot 2017-04-06.png?raw=true)
+![Screenshot](Screenshot 2017-04-06.png)
